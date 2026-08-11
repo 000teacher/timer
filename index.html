@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Timer</title>
+
+    <!-- CSSを読み込む -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+    <main class="timer-container">
+
+        <!-- タイトル -->
+        <div class="title">
+            DIGITAL TIMER
+        </div>
+
+
+        <!-- =========================
+             7セグメント表示
+        ========================== -->
+
+        <div class="display">
+
+            <!-- 1桁目 -->
+            <div class="digit" id="digit1">
+                <div class="segment a"></div>
+                <div class="segment b"></div>
+                <div class="segment c"></div>
+                <div class="segment d"></div>
+                <div class="segment e"></div>
+                <div class="segment f"></div>
+                <div class="segment g"></div>
+            </div>
+
+            <!-- 2桁目 -->
+            <div class="digit" id="digit2">
+                <div class="segment a"></div>
+                <div class="segment b"></div>
+                <div class="segment c"></div>
+                <div class="segment d"></div>
+                <div class="segment e"></div>
+                <div class="segment f"></div>
+                <div class="segment g"></div>
+            </div>
+
+
+            <!-- コロン -->
+            <div class="colon">
+                <span></span>
+                <span></span>
+            </div>
+
+
+            <!-- 3桁目 -->
+            <div class="digit" id="digit3">
+                <div class="segment a"></div>
+                <div class="segment b"></div>
+                <div class="segment c"></div>
+                <div class="segment d"></div>
+                <div class="segment e"></div>
+                <div class="segment f"></div>
+                <div class="segment g"></div>
+            </div>
+
+            <!-- 4桁目 -->
+            <div class="digit" id="digit4">
+                <div class="segment a"></div>
+                <div class="segment b"></div>
+                <div class="segment c"></div>
+                <div class="segment d"></div>
+                <div class="segment e"></div>
+                <div class="segment f"></div>
+                <div class="segment g"></div>
+            </div>
+
+        </div>
+
+
+        <!-- プログレスバー -->
+
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+
+        <!-- 時間設定 -->
+
+        <div class="duration-buttons">
+
+            <button class="duration-button" data-minutes="1">
+                1分
+            </button>
+
+            <button class="duration-button" data-minutes="2">
+                2分
+            </button>
+
+            <button class="duration-button" data-minutes="3">
+                3分
+            </button>
+
+            <button class="duration-button" data-minutes="4">
+                4分
+            </button>
+
+            <button class="duration-button" data-minutes="5">
+                5分
+            </button>
+
+            <button class="duration-button" data-minutes="10">
+                10分
+            </button>
+            
+            <button class="duration-button" data-minutes="15">
+                15分
+            </button>
+
+        </div>
+
+
+        <!-- 操作ボタン -->
+
+        <div class="control-buttons">
+
+            <button id="start-button" class="control-button">
+                START
+            </button>
+
+            <button id="reset-button" class="control-button">
+                RESET
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- JavaScriptを読み込む -->
+    <script src="script.js"></script>
+<script>
+    if ("serviceWorker" in navigator) {
+
+        window.addEventListener("load", () => {
+
+            navigator.serviceWorker.register("./sw.js")
+                .then(() => {
+                    console.log("Service Worker registered.");
+                })
+                .catch(error => {
+                    console.error(
+                        "Service Worker registration failed:",
+                        error
+                    );
+                });
+
+        });
+
+    }
+</script>
+
+</body>
+
+</html>

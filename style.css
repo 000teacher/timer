@@ -1,0 +1,322 @@
+/* =========================
+   全体
+========================= */
+
+body {
+    margin: 0;
+    background: #252525;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.timer-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #252525;
+}
+
+/* =========================
+   色テーマ（追加）
+========================= */
+
+:root {
+    --display-width: 760px;
+
+    /* 50%以上（白） */
+    --color-on-safe: #ffffff;
+    --color-glow-safe: #cccccc;
+
+    /* 50%未満（黄色） */
+    --color-on-warning: #c8a600;
+    --color-glow-warning: #b08f00;
+
+    /* 10%未満（赤） */
+    --color-on-danger: #ff0000;
+    --color-glow-danger: #cc0000;
+
+    /* 現在の色（JSが書き換える） */
+    --color-on: var(--color-on-safe);
+    --color-glow: var(--color-glow-safe);
+}
+
+/* =========================
+   タイトル
+========================= */
+
+.title {
+    margin-bottom: 25px;
+    color: #9aa0a6;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.25em;
+}
+
+/* =========================
+   7セグメント表示全体
+========================= */
+
+.display {
+    display: flex;
+    align-items: center;
+    width: var(--display-width);
+    gap: 18px;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    background: #050505;
+    border: 3px solid #222;
+    border-radius: 8px;
+    box-shadow:
+        inset 0 0 30px #000,
+        0 0 30px rgba(255, 0, 0, 0.08);
+}
+
+/* =========================
+   数字1文字
+========================= */
+
+.digit {
+    position: relative;
+    width: 150px;
+    height: 200px;
+}
+
+/* =========================
+   セグメント共通
+========================= */
+
+.segment {
+    position: absolute;
+    background: #210000;
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px #000;
+    transition: 0.1s;
+}
+
+/* =========================
+   横セグメント
+========================= */
+
+.segment.a,
+.segment.g,
+.segment.d {
+    width: 100px;
+    height: 16px;
+    left: 25px;
+}
+
+.segment.a { top: 10px; }
+.segment.g { top: 92px; }
+.segment.d { bottom: 10px; }
+
+/* =========================
+   縦セグメント
+========================= */
+
+.segment.b,
+.segment.c,
+.segment.e,
+.segment.f {
+    width: 16px;
+    height: 70px;
+}
+
+.segment.b { right: 10px; top: 25px; }
+.segment.c { right: 10px; bottom: 25px; }
+.segment.e { left: 10px; bottom: 25px; }
+.segment.f { left: 10px; top: 25px; }
+
+/* =========================
+   点灯しているセグメント
+========================= */
+
+.segment.on {
+    background: var(--color-on);
+    box-shadow:
+        0 0 3px var(--color-glow),
+        0 0 8px var(--color-glow);
+}
+
+/* =========================
+   コロン
+========================= */
+
+.colon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+}
+
+.colon span {
+    width: 12px;
+    height: 12px;
+    background: var(--color-on);
+    border-radius: 50%;
+    box-shadow:
+        0 0 5px var(--color-glow),
+        0 0 12px var(--color-glow);
+}
+
+/* =========================
+   プログレスバー
+========================= */
+
+.progress-container {
+    width: var(--display-width);
+    height: 30px;
+    margin-top: 30px;
+    box-sizing: border-box;
+    background: #250000;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 100%;
+    background: var(--color-on);
+    box-shadow: 0 0 8px var(--color-glow);
+    transition: width 1s linear, background-color 0.2s ease;
+}
+
+/* =========================
+   時間設定ボタン
+========================= */
+
+.duration-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 35px;
+}
+
+.duration-button {
+    padding: 8px 14px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background: #222;
+    color: #aaa;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.duration-button:hover {
+    background: #333;
+    color: white;
+}
+
+.duration-button.active {
+    background: #600;
+    color: white;
+    border-color: #d00;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+/* =========================
+   操作ボタン
+========================= */
+
+.control-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.control-button {
+    padding: 12px 30px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background: #222;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.control-button:hover {
+    background: #333;
+}
+
+/* =========================
+   スマートフォン対応
+========================= */
+
+@media (max-width: 600px) {
+
+    .display {
+        width: auto;
+        gap: 5px;
+        padding: 15px;
+    }
+
+    .title {
+        margin-bottom: 15px;
+        font-size: 13px;
+    }
+
+    .digit {
+        width: 45px;
+        height: 80px;
+    }
+
+    .segment.a,
+    .segment.g,
+    .segment.d {
+        width: 30px;
+        height: 7px;
+        left: 7px;
+    }
+
+    .segment.a { top: 5px; }
+    .segment.g { top: 36px; }
+    .segment.d { bottom: 5px; }
+
+    .segment.b,
+    .segment.c,
+    .segment.e,
+    .segment.f {
+        width: 7px;
+        height: 28px;
+    }
+
+    .segment.b { right: 5px; top: 9px; }
+    .segment.c { right: 5px; bottom: 9px; }
+    .segment.f { left: 5px; top: 9px; }
+    .segment.e { left: 5px; bottom: 9px; }
+
+    .colon {
+        gap: 15px;
+    }
+
+    .colon span {
+        width: 7px;
+        height: 7px;
+    }
+
+    .progress-container {
+        width: 280px;
+        height: 50px;
+    }
+
+    .duration-buttons {
+        gap: 5px;
+        margin-top: 20px;
+    }
+
+    .duration-button {
+        padding: 6px 9px;
+        font-size: 12px;
+    }
+
+    .control-buttons {
+        gap: 10px;
+        margin-top: 18px;
+    }
+
+    .control-button {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+}
