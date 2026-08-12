@@ -1,13 +1,12 @@
 {
   "name": "Digital Timer",
   "short_name": "Timer",
-  "description": "7セグメント表示のデジタルタイマー",
+  "description": "プロセスバー付き7セグメント表示のデジタルタイマー",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#252525",
   "theme_color": "#252525",
   "orientation": "landscape",
-
   "icons": [
     {
       "src": "icon-192.png",
@@ -19,5 +18,6 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "id": "com.000.digitaltimer"
 }
